@@ -18,11 +18,8 @@ while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"Guess the State {len(guessed_states)}/{len(states_data)}", prompt="Whats another state name?").title()
 
     if answer_state == "Exit":
-        study_these_states = []
         states_list = states_data.state.to_list()
-        for state_list in states_list:
-            if state_list not in guessed_states:
-                study_these_states.append(state_list)
+        study_these_states = [state_list for state_list in states_list if state_list not in guessed_states]
         study_data_frame = {
             f"state, {len(study_these_states)}": study_these_states,
         }
